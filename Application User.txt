@@ -1,0 +1,21 @@
+Standard Fields
+ 	Standard Fields Help Standard Fields Help (New Window)
+Action	Field Label	Field Name	Data Type	Controlling Field	Indexed	Track History
+Edit	Application User No	Name	Auto Number	 	Checked	Not Checked
+ 	Created By	CreatedBy	Lookup(User)	 	 	Not Checked
+ 	Last Modified By	LastModifiedBy	Lookup(User)	 	 	Not Checked
+Custom Fields & Relationships
+ New  Field Dependencies Set History Tracking	Custom Fields & Relationships Help Custom Fields & Relationships Help (New Window)
+Action	 	
+Field Label
+API Name
+Data Type	Indexed	Controlling Field	Modified By	Track History
+Edit | Del	 	
+Application Config For User
+MBT_SFFB__Application_Config_For_User__c	Master-Detail(Application Config)	Checked	 	Chirag Shah, 12/6/2016 2:17 AM	Not Checked
+Edit | Del	 	
+Application User
+MBT_SFFB__ApplicationUserName__c	Lookup(User)	Checked	 	Chirag Shah, 12/6/2016 2:14 AM	Not Checked
+Edit | Del	 	
+Validated
+MBT_SFFB__Validated__c	Checkbox	 	 	Chirag Shah, 12/6/2016 3:01 AM	

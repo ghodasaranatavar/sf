@@ -1,0 +1,39 @@
+Standard Fields
+ 	Standard Fields Help Standard Fields Help (New Window)
+Action	Field Label	Field Name	Data Type	Controlling Field	Indexed	Track History
+ 	Created By	CreatedBy	Lookup(User)	 	 	Not Checked
+Edit	Facebook Page No	Name	Auto Number	 	Checked	Not Checked
+ 	Last Modified By	LastModifiedBy	Lookup(User)	 	 	Not Checked
+Custom Fields & Relationships
+ New  Field Dependencies Set History Tracking	Custom Fields & Relationships Help Custom Fields & Relationships Help (New Window)
+Action	 	
+Field Label
+API Name
+Data Type	Indexed	Controlling Field	Modified By	Track History
+Edit | Del	 	
+Cover Image
+MBT_SFFB__Cover_Image__c	URL(255)	 	 	Chirag Shah, 1/7/2017 12:01 AM	Not Checked
+Edit | Del	 	
+Cover Picture
+MBT_SFFB__Cover_Picture__c	Formula (Text)	 	 	Chirag Shah, 1/7/2017 12:03 AM	Not Checked
+Edit | Del	 	
+Facebook ID
+MBT_SFFB__Facebook_ID__c	Text(255) (External ID)	Checked	 	Chirag Shah, 12/17/2016 2:11 AM	Not Checked
+Edit | Del	 	
+Facebook Page ID
+MBT_SFFB__Facebook_Page_ID__c	Text Area(255)	 	 	Chirag Shah, 12/20/2016 4:18 AM	Not Checked
+Edit | Del	 	
+Facebook Page Name
+MBT_SFFB__Facebook_Page_Name__c	Text Area(255)	 	 	Chirag Shah, 12/6/2016 3:42 AM	Not Checked
+Edit | Del	 	
+Facebook Page Url
+MBT_SFFB__Facebook_Page_Url__c	URL(255)	 	 	Chirag Shah, 12/30/2016 5:21 AM	Not Checked
+Edit | Del	 	
+Facebook User Relates To Page
+MBT_SFFB__Facebook_User_Relates_To_Page__c	Master-Detail(Facebook User)	Checked	 	Chirag Shah, 12/6/2016 3:53 AM	Not Checked
+Edit | Del	 	
+Image
+MBT_SFFB__Image__c	URL(255)	 	 	Chirag Shah, 12/6/2016 3:38 AM	Not Checked
+Edit | Del	 	
+Picture
+MBT_SFFB__Picture__c	Formula (Text)	 	 	Chirag Shah, 12/6/2016 3:43 AM	

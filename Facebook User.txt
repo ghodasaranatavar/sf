@@ -1,0 +1,37 @@
+Standard Fields
+ 	Standard Fields Help Standard Fields Help (New Window)
+Action	Field Label	Field Name	Data Type	Controlling Field	Indexed	Track History
+ 	Created By	CreatedBy	Lookup(User)	 	 	Not Checked
+Edit	Facebook User No	Name	Auto Number	 	Checked	Not Checked
+ 	Last Modified By	LastModifiedBy	Lookup(User)	 	 	Not Checked
+Edit	Owner	Owner	Lookup(User,Queue)	 	Checked	Not Checked
+Custom Fields & Relationships
+ New  Field Dependencies Set History Tracking	Custom Fields & Relationships Help Custom Fields & Relationships Help (New Window)
+Action	 	
+Field Label
+API Name
+Data Type	Indexed	Controlling Field	Modified By	Track History
+Edit | Del	 	
+About Me
+MBT_SFFB__About_Me__c	Long Text Area(131072)	 	 	Chirag Shah, 12/12/2016 2:23 AM	Not Checked
+Edit | Del	 	
+Birthdate
+MBT_SFFB__Birthdate__c	Date	 	 	Chirag Shah, 12/6/2016 2:30 AM	Not Checked
+Edit | Del	 	
+Facebook ID
+MBT_SFFB__Facebook_ID__c	Text(255) (External ID) (Unique Case Insensitive)	Checked	 	Chirag Shah, 12/6/2016 2:32 AM	Not Checked
+Edit | Del	 	
+Facebook Name
+MBT_SFFB__Facebook_Name__c	Text(255)	 	 	Chirag Shah, 12/12/2016 1:58 AM	Not Checked
+Edit | Del	 	
+Facebook User Relates To Application
+MBT_SFFB__Facebook_User_Relates_To_Application__c	Lookup(Application User)	Checked	 	Chirag Shah, 12/6/2016 4:46 AM	Not Checked
+Edit | Del	 	
+Image
+MBT_SFFB__Image__c	URL(255)	 	 	Chirag Shah, 12/6/2016 2:34 AM	Not Checked
+Edit | Del	 	
+Picture
+MBT_SFFB__Picture__c	Formula (Text)	 	 	Chirag Shah, 12/6/2016 2:41 AM	Not Checked
+Edit | Del	 	
+Validated
+MBT_SFFB__Validated__c	Checkbox	 	 	Chirag Shah, 12/6/2016 2:42 AM	Not Checked

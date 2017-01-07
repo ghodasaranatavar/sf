@@ -1,0 +1,217 @@
+<apex:page standardController="Lead" extensions="dupechecker_Lead" tabStyle="Lead"> 
+<style>
+
+.displaynone
+{
+    display:none;
+}
+.th1
+{
+    background-color:#d9eaef;
+    border: 1px solid #d9eaef; 
+    -webkit-border-radius: 3px; 
+    -moz-border-radius: 3px; 
+     border-radius: 3px;
+}
+.divclass
+    {
+        display:block;
+    }
+    .bPageBlock
+    {
+    background-color: #f8f8f8;
+    border-top:3px solid #e39321;
+    border-bottom: 1px solid #eaeaea;
+    border-left: 1px solid #eaeaea;
+    border-right: 1px solid #eaeaea;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+        padding: 0;
+    margin-bottom: 10px;
+        clear: both;
+    }
+</style>
+<script type="text/javascript">
+function clearall()
+{
+ document.getElementById("resultant_table").className += " displaynone";
+    document.getElementById('leadName').value='';
+    document.getElementById('leadCompany').value='';        
+    document.getElementById('leadPhone').value='';
+}
+function enablesave()
+{
+    if((document.getElementById('newlead').checked))
+    {
+        
+        document.getElementById("savebtn").className =document.getElementById("savebtn").className.replace( /(?:^|\s)displaynone(?!\S)/g , '' );
+       document.getElementById("clearbtn").className =document.getElementById("clearbtn").className.replace( /(?:^|\s)displaynone(?!\S)/g , '' );
+    }
+    else
+    {
+        document.getElementById("savebtn").className = "displaynone";
+        document.getElementById("clearbtn").className = "displaynone";
+    }
+}
+
+function insertleadJS()
+{
+    var leadNameJS= document.getElementById('leadName').value;        
+        var leadPhoneJS = document.getElementById('leadPhone').value;
+        var leadCompanyJS = document.getElementById('leadCompany').value;
+        if((leadNameJS!='')&&(leadPhoneJS !='')&&((leadCompanyJS !='')))
+        {
+             MBT_SFFB.dupechecker_Lead.insertLead(leadNameJS,leadPhoneJS,leadCompanyJS,function(result, event)
+             {
+                   if (event.status) 
+                    {
+                        if(result!='Exception')
+                        {
+                            
+                            window.location.href = "https://ap2.salesforce.com/"+result;
+                   
+                            // redirect to the inserted record.
+                        }
+                    }
+            }, {escape:true});
+        }
+        else
+        {
+            clearall();
+            alert('Email Id and Name Field is Required !');
+        }
+}
+
+    function getleadJS() 
+    {
+        //get the values of input text and place into the variable.
+        
+        var leadNameJS = document.getElementById('leadName').value;       
+        var leadPhoneJS = document.getElementById('leadPhone').value;
+        var leadCompanyJS = document.getElementById('leadCompany').value;
+        
+        document.getElementById("savebtn").className = "displaynone";
+            document.getElementById("clearbtn").className = "displaynone";
+        if((leadNameJS =='')&&(leadPhoneJS=='')&&(leadCompanyJS==''))
+        {
+            
+            document.getElementById("resultant_table").innerHTML='';
+            document.getElementById("resultant_table").className += " displaynone";
+        }
+        else
+        {
+       //  enablesave();   
+                document.getElementById("resultant_table").className =document.getElementById("resultant_table").className.replace( /(?:^|\s)displaynone(?!\S)/g , '' );
+        MBT_SFFB.dupechecker_Lead.getLead(leadNameJS,leadPhoneJS,leadCompanyJS,
+        function(result, event)
+        {         
+            var table='';    
+            if (event.status) 
+            {
+            table=table+'<thead><tr class="th1"><td colspan="5"><b>Potential Duplicate Leads ['+result.length+']<b></td></tr></thead>';
+            table=table+'<thead><tr class="th1"><td><b>Name</b></td><td><b>Phone No</b></td><td><b>Email</b></td><td><b>Company</b></td><td><b>Status</b></td></tr></thead><tbody>';
+                for(var i=0;i<result.length;i++)
+                    { 
+                        var acc = result[i];
+                        if(acc.Name==undefined)
+                        {
+                            table=table+'<tr><td></td>';
+                        }
+                        else
+                        {
+                            table=table+'<tr><td><input type="radio" name="lead" id='+acc.Id+' value='+acc.Id+' onchange="enablesave()"></input><a href=https://ap2.salesforce.com/'+acc.Id+' target="_top">'+acc.Name+'</a></td>';
+                        }
+                        if(acc.Phone==undefined)
+                        {
+                            table=table+'<td> </td>';
+                        }
+                        else
+                        {
+                            table=table+'<td>'+acc.Phone+'</td>';
+                        }
+                        if(acc.Email==undefined)
+                        {
+                            table=table+'<td> </td>';
+                        }
+                        else
+                        {
+                            table=table+'<td>'+acc.Email+'</td>';
+                        }
+                        if(acc.Company==undefined)
+                        {
+                            table=table+'<td> </td>';
+                        }
+                        else
+                        {
+                            table=table+'<td>'+acc.Company+'</td>';
+                        }
+                        if(acc.Status==undefined)
+                        {
+                            table=table+'<td> </td>';
+                        }
+                        else
+                        {
+                            table=table+'<td>'+acc.Status+'</td>';
+                        }
+                        table= table+'</tr>';
+                    }
+                    
+                    if(result.length!=0)
+                    {
+                        table=table+'<tr class="th1"><td colspan="5"><input type="radio" name="lead" id="newlead" onchange="enablesave()"><b>New Lead</b></input></td></tr>';
+                        table= table+'</tbody>';
+                       document.getElementById("resultant_table").innerHTML=table; 
+                    }
+                    else
+                    {
+                     table='';
+                     table=table+'<tr class="th1"><td colspan="5"><b>Potential Duplicate New Leads [0]<b></td></tr>';                      
+                     table=table+'<input type="radio" name="lead" id="newlead" onchange="enablesave()"><b>New Lead</b></input>';
+                     document.getElementById("resultant_table").innerHTML=table;
+                    }
+                    
+            }
+            
+        }, {escape:true});
+           
+            
+        }
+        
+    }
+    </script>
+  <apex:form id="searchForm"> 
+     <apex:sectionheader title="Lead" subtitle="{!if(LeadID==null,'New Lead',LeadnewName)}"></apex:sectionheader>
+  <apex:pageblock mode="edit" id="accountPB" title="Lead">
+     <apex:pagemessages ></apex:pagemessages>
+     <table width="100%">
+     <tr>
+     <td width="100px">
+     <table width="100%">
+    <tr>
+    <td><b>Lead Name :</b></td>
+    <td><input id="leadName" type="text" onkeyup="getleadJS()" /></td>
+    </tr>
+    <tr>
+    <td><b>Lead Company :</b></td>
+    <td><input id="leadCompany" type="text" onkeyup="getleadJS()" /></td>
+    </tr>
+    <tr>
+    <td><b>Lead Phone No :</b></td>
+    <td><input id="leadPhone" type="text" onkeyup="getleadJS()" /></td>
+    </tr>    
+    <tr>
+    <td><button onclick="insertleadJS()" class="displaynone" type="button" id="savebtn">Save</button></td>
+    <td><button onclick="clearall()" type="button" class="displaynone" id="clearbtn">Cancel</button></td>
+    </tr>    
+    </table>
+    </td>
+     <td width="350px">
+     <table width="100%" class="bPageBlock displaynone" id="resultant_table">     
+     </table>
+    </td>     
+     </tr>
+     </table>
+    </apex:pageblock>
+   </apex:form>
+</apex:page>

@@ -1,0 +1,206 @@
+<apex:page standardController="Contact" extensions="dupechecker_Contact" tabStyle="Contact"> 
+<style>
+
+.displaynone
+{
+    display:none;
+}
+.th1
+{
+    background-color:#d9eaef;
+    border: 1px solid #d9eaef; 
+    -webkit-border-radius: 3px; 
+    -moz-border-radius: 3px; 
+     border-radius: 3px;
+}
+.divclass
+    {
+        display:block;
+    }
+    .bPageBlock
+    {
+    background-color: #f8f8f8;
+    border-top:3px solid #e39321;
+    border-bottom: 1px solid #eaeaea;
+    border-left: 1px solid #eaeaea;
+    border-right: 1px solid #eaeaea;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+        padding: 0;
+    margin-bottom: 10px;
+        clear: both;
+    }
+</style>
+<script type="text/javascript">
+function clearall()
+{
+ document.getElementById("resultant_table").className += " displaynone";
+    document.getElementById('conName').value='';
+        document.getElementById('conEmail').value='';
+        document.getElementById('conPhone').value='';
+}
+function enablesave()
+{
+    if((document.getElementById('newcontact').checked))
+    {
+        
+        document.getElementById("savebtn").className =document.getElementById("savebtn").className.replace( /(?:^|\s)displaynone(?!\S)/g , '' );
+       document.getElementById("clearbtn").className =document.getElementById("clearbtn").className.replace( /(?:^|\s)displaynone(?!\S)/g , '' );
+    }
+    else
+    {
+        document.getElementById("savebtn").className = "displaynone";
+                document.getElementById("clearbtn").className = "displaynone";
+    }
+}
+function disablesave()
+{
+    
+}
+function insertcontactJS()
+{
+    var contactNameJS = document.getElementById('conName').value;
+        var contactEmailJS = document.getElementById('conEmail').value;
+        var contactPhoneJS = document.getElementById('conPhone').value;
+        if((contactNameJS!='')&&(contactEmailJS!=''))
+        {
+         MBT_SFFB.dupechecker_Contact.insertContact(contactNameJS,contactPhoneJS,contactEmailJS,
+         function(result, event)
+        {
+           if (event.status) 
+            {
+                if(result!='Exception')
+                {
+                 
+                window.location.href = "https://ap2.salesforce.com/"+result;
+                   
+                    // redirect to the inserted record.
+                }
+            }
+            
+        }, {escape:true});
+        }
+        else
+        {
+            clearall();
+            alert('Email Id and Name Field is Required !');
+        }
+}
+
+    function getcontactJS() 
+    {
+        //get the values of input text and place into the variable.
+        
+        var contactNameJS = document.getElementById('conName').value;
+        var contactEmailJS = document.getElementById('conEmail').value;
+        var contactPhoneJS = document.getElementById('conPhone').value;
+        document.getElementById("savebtn").className = "displaynone";
+        document.getElementById("clearbtn").className = "displaynone";
+        if((contactNameJS=='')&&(contactEmailJS=='')&&(contactPhoneJS==''))
+        {
+            
+            document.getElementById("resultant_table").innerHTML='';
+            document.getElementById("resultant_table").className += " displaynone";
+        }
+        else
+        {
+            
+        document.getElementById("resultant_table").className =document.getElementById("resultant_table").className.replace( /(?:^|\s)displaynone(?!\S)/g , '' );
+        MBT_SFFB.dupechecker_Contact.getContact(contactNameJS,contactPhoneJS,contactEmailJS, 
+        function(result, event)
+        {         
+            var table='';    
+            if (event.status) 
+            {
+            table=table+'<thead><tr class="th1"><td colspan="3"><b>Potential Duplicate Contacts ['+result.length+']<b></td></tr></thead>';
+            table=table+'<thead><tr class="th1"><td><b>Name</b></td><td><b>Phone No</b></td><td><b>Email<b></td></tr></thead><tbody>';
+                for(var i=0;i<result.length;i++)
+                    { 
+                        var acc = result[i];
+                        if(acc.Name==undefined)
+                        {
+                            table=table+'<tr><td></td>';
+                        }
+                        else
+                        {
+                            table=table+'<tr><td><input type="radio" name="contact" id='+acc.Id+' value='+acc.Id+' onchange="enablesave()"></input><a href=https://ap2.salesforce.com/'+acc.Id+' target="_top">'+acc.Name+'</a></td>';
+                        }
+                        if(acc.MobilePhone==undefined)
+                        {
+                            table=table+'<td> </td>';
+                        }
+                        else
+                        {
+                            table=table+'<td>'+acc.MobilePhone+'</td>';
+                        }
+                        if(acc.Email==undefined)
+                        {
+                            table=table+'<td> </td>';
+                        }
+                        else
+                        {
+                            table=table+'<td>'+acc.Email+'</td>';
+                        }
+                        table= table+'</tr>';
+                    }
+                    
+                    if(result.length!=0)
+                    {
+                        table=table+'<tr class="th1"><td colspan="3"><input type="radio" name="contact" id="newcontact" onchange="enablesave()"><b>New Contact</b></input></td></tr>';
+                        table= table+'</tbody>';
+                       document.getElementById("resultant_table").innerHTML=table; 
+                    }
+                    else
+                    {
+                     table='';
+                     table=table+'<tr class="th1"><td><b>Potential Duplicate Contacts [0]<b></td></tr>';                      
+                     table=table+'<input type="radio" name="contact" id="newcontact" onchange="enablesave()"><b>New Contact</b></input>';
+                     document.getElementById("resultant_table").innerHTML=table;
+                    }
+                    
+            }
+            
+        }, {escape:true});
+           
+            
+        }
+        
+    }
+    </script>
+  <apex:form id="searchForm">
+  <apex:sectionheader title="Contact" subtitle="{!if(ContactID==null,'New Contact',ContactnewName)}"></apex:sectionheader>
+  <apex:pageblock mode="edit" id="accountPB" title="Contact">
+     
+     <apex:pagemessages ></apex:pagemessages>
+     <table width="100%">
+     <tr>
+     <td width="100px">
+     <table width="100%">
+    <tr>
+    <td><b>Contact Name :</b></td>
+    <td><input id="conName" type="text" onkeyup="getcontactJS()" /></td>
+    </tr>
+    <tr>
+    <td><b>Contact Phone No :</b></td>
+    <td><input id="conPhone" type="text" onkeyup="getcontactJS()" /></td>
+    </tr>
+    <tr>
+    <td><b>Contact Email :</b></td>
+    <td><input id="conEmail" type="text" onkeyup="getcontactJS()" /></td>
+    </tr>
+    <tr>
+    <td><button onclick="insertcontactJS()" class="displaynone" type="button" id="savebtn">Save</button></td>
+    <td><button onclick="clearall()" type="button" class="displaynone" id="clearbtn">Cancel</button></td>
+    </tr>    
+    </table>
+    </td>
+     <td width="350px">
+     <table width="100%" class="bPageBlock displaynone" id="resultant_table">     
+     </table>
+    </td>     
+     </tr>
+     </table>
+    </apex:pageblock>
+   </apex:form>
+</apex:page>

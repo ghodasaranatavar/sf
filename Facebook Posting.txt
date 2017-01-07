@@ -1,0 +1,180 @@
+<apex:page id="facebookposting" controller="facebookposing">
+
+<apex:stylesheet value="{!URLFOR($Resource.facebookresorce, 'resource/css/bootstrap.min.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.facebookresorce, 'resource/css/bootstrap-reset.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.facebookresorce, 'resource/assets/font-awesome/css/font-awesome.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.facebookresorce, 'resource/css/slidebars.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.facebookresorce, 'resource/css/style.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.facebookresorce, 'resource/css/style-responsive.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.facebookresorce, 'resource/css/custom.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.facebookresorce, 'resource/css/table-responsive.css')}" />
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/jquery.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/bootstrap.min.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/jquery-ui-1.9.2.custom.min.js')}"></script>
+<script type="text/javascript" class="include" src="{!URLFOR($Resource.facebookresorce, 'resource/js/jquery.dcjqaccordion.2.7.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/bootstrap-switch.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/jquery.tagsinput.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/jquery.scrollTo.min.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/jquery.nicescroll.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/jquery.sparkline.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/jquery.customSelect.min.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/respond.min.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/slidebars.min.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/common-scripts.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/sparkline-chart.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/easy-pie-chart.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/count.js')}"></script> 
+
+<style>#bodyCell{background-color:rgba(197, 204, 226, 0.64);}</style><!-- add by ankit #f1f2f7  finally applied  rgba(197, 204, 226, 0.64) -->
+<apex:form id="facebookpostingpage" >
+<section id="container">
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row" id="navandtabsection">
+                <div class="col-md-12">                    
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="row">
+                           <section class="panel">
+                               <div class="cover-photo">
+                                   <div class="fb-timeline-img">
+                                       <apex:image url="{!$Resource.cover}" height="200"/>
+                                  </div>
+                                  <div class="fb-name">
+                                      <h2><a href="{!pageurl}">{!pagename}</a></h2>
+                                  </div>
+                              </div>
+                              <div class="panel-body">
+                                  <div class="profile-thumb">
+                                      <img src="{!pagepicture}" alt="" />
+                                  </div>
+                                  <a href="{!pageurl}" class="fb-user-mail">{!pagename}</a>
+                              </div>
+                          </section>                            
+                          <section class="panel profile-info">
+                              
+                                
+                              <apex:inputTextarea rows="2" value="{!pagepost}" styleClass="form-control input-lg p-text-area" id="postingonpage" />
+
+                              <div class="panel-footer" style="min-height:50px;padding: 5px;">
+                              <apex:commandButton styleClass="btn btn-danger pull-right" value="Post" id="post" action="{!postit}" reRender="postrepeat">                              
+                              </apex:commandButton>
+                                  
+                              </div>
+                          </section>                            
+                      </div>
+                       <div class="row">  
+                     <div class="col-md-9" style="padding-left: 0px;"> 
+                    <apex:outputPanel rendered="true" id="postrepeat">                    
+                      <apex:repeat value="{!objmappost}" var="post">
+                     
+                          <section class="panel">
+                              <div class="panel-body">
+                                  <div class="fb-user-thumb">
+                                      <img src="{!pagepicture}" alt="" />
+                                  </div>
+                                  <div class="fb-user-details">
+                                      <h3><a href="{!objmappost[post].MBT_SFFB__Link__c}" class="#">{!pagename}</a></h3>
+                                      <p>7 minutes ago near Alaska, USA</p> 
+                                  </div>
+                                  <div class="clearfix"></div>
+                                  <p class="fb-user-status">
+                                      {!objmappost[post].MBT_SFFB__Message__c}
+                                  </p>
+                                  <div class="fb-status-container fb-border">
+                                      <div class="fb-time-action">
+                                          <a href="#" title="Like this">Like</a>
+                                          <span>-</span>
+                                          <a href="#" title="Leave a comment">Comments</a>
+                                           <span>-</span>                                          
+                                          <apex:commandLink id="createcontact" action="{!createcontactifnot}"  title="Create Contact" value="Create Contacts" reRender="contactpanel">
+                                          <apex:param name="postid" value="{!objmappost[post].Id}" assignTo="{!postid}"/>
+                                          </apex:commandlink>
+                                          
+                                      </div>
+                                  </div>
+                                  <div class="fb-status-container fb-border fb-gray-bg">
+                                      <div class="fb-time-action like-info">
+                                             
+                                              <a href="#">Danieal Kalion</a>
+                                              <span>and</span>
+                                              <a href="#">40 more</a>
+                                              <span>like this</span>
+                                          </div>
+                                          <ul class="fb-comments"> 
+                                        
+                                                                                                          
+                                              <apex:repeat id="comment" rendered="{!objmappost[post].MBT_SFFB__Total_Comments__c> 0}" value="{!objmapcomment[post]}" var="comment">
+                                                  <li>
+                                                      <a href="#" class="cmt-thumb" style="position: absolute;">
+                                                          <img src="{!pagepicture}" alt="" />
+                                                      </a>
+                                                      <div class="cmt-details">
+                                                         <a href="{!comment.MBT_SFFB__Author_URL__c}">{!comment.MBT_SFFB__Author_Realname__c}</a>
+                                                          <span>{!comment.MBT_SFFB__Message__c}</span> 
+                                                          <p>40 minutes ago - <a href="#" class="like-link">Like</a></p>
+                                                      </div>
+                                                  </li>
+                                              </apex:repeat>
+                                             
+                                              <li>
+                                                  <a href="#" class="cmt-thumb">
+                                                      <img src="{!pagepicture}" alt="" />
+                                                  </a>
+                                                  <div class="chat-cmt-btn">
+                                                      <textarea class="form-control" placeholder="Write a comment..." name=""></textarea>
+                                                  </div>
+                                                  <div class="btn-group">
+                                                  <!--<apex:commandButton styleClass="btn btn-danger" value="Post" action="{!}">
+                                                  <apex:param name="comment" value="{!objmappost[post].Id}" assignTo="{!postid}"/>
+                                                  </apex:commandButton>-->
+                                                     <!-- <button type="button" id="btn_comment" class="btn btn-danger">send</button> -->                                             
+                                                  </div>
+                                              </li>                                      
+                                          </ul>
+                                          <div class="clearfix"></div>
+                                      </div>                          
+                                  </div>                               
+                              </section>
+                     
+                        </apex:repeat>
+                       </apex:outputPanel>
+                      </div>   
+                        <div class="col-md-3">
+                        <apex:outputPanel id="contactpanel" rendered="true" >
+                       <apex:repeat id="contactrepeat" value="{!contactlistbypage}" var="contact">
+                     <div class="col-md-12">
+                                            <section class="panel">                     
+                                                <div class="panel-body">
+                                                    <div class="best-seller">
+                                                        <article class="media media-bd">
+                                                            <a class="pull-left thumb p-thumb">
+                                                                <apex:image url="{!$Resource.user}" height="20" width="20"/>
+                                                            </a>
+                                                            <div class="media-body">
+                                                                <a href="https://ap2.salesforce.com/{!contact.MBT_SFFB__Conversation_Contact__c}" target="_top" class="p-head">{!contact.MBT_SFFB__Conversation_Contact__r.Name}</a>
+                                                                <!--<p>{!contact.}</p> -->
+                                                                <br />
+                                                                <a href="{!contact.MBT_SFFB__Author_URL__c}" class="p-head">View in facebook</a>
+                                                            </div>
+                                                        </article>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                    </apex:repeat>
+                                      </apex:outputPanel>
+                      </div>
+                      </div>
+                    
+                    </div>
+                    </div>
+                  </div>
+                            
+               
+            
+              </section>
+          </section>
+        </section>
+        </apex:form>
+</apex:page>

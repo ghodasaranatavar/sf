@@ -1,0 +1,94 @@
+Standard Fields
+ 	Standard Fields Help Standard Fields Help (New Window)
+Action	Field Label	Field Name	Data Type	Controlling Field	Indexed	Track History
+Edit	Conversation Name	Name	Auto Number	 	Checked	Not Checked
+ 	Created By	CreatedBy	Lookup(User)	 	 	Not Checked
+ 	Last Modified By	LastModifiedBy	Lookup(User)	 	 	Not Checked
+Edit	Owner	Owner	Lookup(User,Queue)	 	Checked	Not Checked
+Custom Fields & Relationships
+ New  Field Dependencies Set History Tracking	Custom Fields & Relationships Help Custom Fields & Relationships Help (New Window)
+Action	 	
+Field Label
+API Name
+Data Type	Indexed	Controlling Field	Modified By	Track History
+Edit | Del	 	
+Author External Id
+MBT_SFFB__Author_External_Id__c	Text Area(255)	 	 	Chirag Shah, 12/19/2016 11:58 PM	Not Checked
+Edit | Del	 	
+Author URL
+MBT_SFFB__Author_URL__c	URL(255)	 	 	Chirag Shah, 12/20/2016 12:00 AM	Not Checked
+Edit | Del	 	
+Author Username
+MBT_SFFB__Author_Realname__c	Text Area(255)	 	 	Chirag Shah, 12/20/2016 12:02 AM	Not Checked
+Edit | Del	 	
+Collected Comments
+MBT_SFFB__Collected_Comments__c	Number(18, 0)	 	 	Chirag Shah, 12/20/2016 12:19 AM	Not Checked
+Edit | Del	 	
+Contact Created
+MBT_SFFB__Contact_Created__c	Formula (Text)	 	 	Chirag Shah, 12/19/2016 11:51 PM	Not Checked
+Edit | Del	 	
+Conversation Contact
+MBT_SFFB__Conversation_Contact__c	Lookup(Contact)	Checked	 	Chirag Shah, 12/19/2016 7:24 AM	Not Checked
+Edit | Del	 	
+External ID
+MBT_SFFB__External_ID__c	Text(100) (External ID)	Checked	 	Chirag Shah, 12/20/2016 12:09 AM	Not Checked
+Edit | Del	 	
+Facebook Page
+MBT_SFFB__Facebook_Page__c	Lookup(Facebook Page)	Checked	 	Chirag Shah, 12/28/2016 4:38 AM	Not Checked
+Edit | Del	 	
+Image
+MBT_SFFB__Image__c	URL(255)	 	 	Chirag Shah, 12/27/2016 12:16 AM	Not Checked
+Edit | Del	 	
+Is Comment
+MBT_SFFB__Is_Comment__c	Checkbox	 	 	Chirag Shah, 12/23/2016 2:23 AM	Not Checked
+Edit | Del	 	
+Is Status
+MBT_SFFB__Is_Status__c	Checkbox	 	 	Chirag Shah, 1/7/2017 4:29 AM	Not Checked
+Edit | Del	 	
+Likes Count
+MBT_SFFB__Likes_Count__c	Number(18, 0)	 	 	Chirag Shah, 12/20/2016 12:32 AM	Not Checked
+Edit | Del	 	
+Link
+MBT_SFFB__Link__c	URL(255)	 	 	Chirag Shah, 12/20/2016 12:17 AM	Not Checked
+Edit | Del	 	
+Message
+MBT_SFFB__Message__c	Long Text Area(131072)	 	 	Chirag Shah, 12/20/2016 12:14 AM	Not Checked
+Edit | Del	 	
+Paging
+MBT_SFFB__Paging__c	Long Text Area(131072)	 	 	Chirag Shah, 12/20/2016 12:41 AM	Not Checked
+Edit | Del	 	
+Parent Conversation
+MBT_SFFB__parent__c	Lookup(Conversation)	Checked	 	Chirag Shah, 12/28/2016 3:53 AM	Not Checked
+Edit | Del	 	
+Photo Picture
+MBT_SFFB__Photo_Picture__c	Formula (Text)	 	 	Chirag Shah, 1/7/2017 4:33 AM	Not Checked
+Edit | Del	 	
+Photo Url
+MBT_SFFB__Photo_Url__c	URL(255)	 	 	Chirag Shah, 1/7/2017 4:31 AM	Not Checked
+Edit | Del	 	
+Picture
+MBT_SFFB__Picture__c	Formula (Text)	 	 	Chirag Shah, 12/28/2016 6:43 AM	Not Checked
+Edit | Del	 	
+Post And Comment Retrieved From
+MBT_SFFB__Post_And_Comment_Retrieved_From__c	Date/Time	 	 	Chirag Shah, 12/23/2016 2:16 AM	Not Checked
+Edit | Del	 	
+Post And Comment Retrieved Untill
+MBT_SFFB__Post_And_Comment_Retrieved_Untill__c	Date/Time	 	 	Chirag Shah, 12/23/2016 2:17 AM	Not Checked
+Edit | Del	 	
+Profile Type
+MBT_SFFB__Profile_Type__c	Text(255)	 	 	Chirag Shah, 12/23/2016 2:09 AM	Not Checked
+Edit | Del	 	
+Published Date
+MBT_SFFB__Published_Date__c	Date/Time	 	 	Chirag Shah, 12/20/2016 12:16 AM	Not Checked
+Edit | Del	 	
+Replied Conversation's External Id
+MBT_SFFB__Replied_Conversation_s_External_Id__c	Text Area(255)	 	 	Chirag Shah, 12/20/2016 12:36 AM	Not Checked
+Edit | Del	 	
+Replied User's External Id
+MBT_SFFB__Replied_User_s_External_Id__c	Text Area(255)	 	 	Chirag Shah, 12/20/2016 12:37 AM	Not Checked
+Edit | Del	 	
+Total Comments
+MBT_SFFB__Total_Comments__c	Number(18, 0)	 	 	Chirag Shah, 12/20/2016 12:27 AM	Not Checked
+Edit | Del	 	
+Uncollected Comments
+MBT_SFFB__Uncollected_Comments__c	Formula (Number)	 	 	Chirag Shah, 12/20/2016 12:30 AM	Not Checked

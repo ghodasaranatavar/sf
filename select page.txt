@@ -1,0 +1,18 @@
+<apex:page controller="getallpages">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection >            
+                <apex:outputLabel id="opt_lbl" value="Select Page">
+                </apex:outputLabel>                      
+                <apex:OutputPanel >
+                    <apex:selectList value="{!selectedpageId}" size="1" multiselect="false"  >
+                        <apex:selectOptions value="{!ListOfpages}" />
+                        <apex:actionSupport event="onchange" action="{!selectpage}"/>
+                    </apex:selectList> 
+                </apex:OutputPanel>
+            </apex:pageBlockSection>
+            Attention !! Please Select the Page !
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
+                  

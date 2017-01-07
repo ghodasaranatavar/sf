@@ -1,0 +1,200 @@
+<apex:page standardController="Account" extensions="dupechecker_Account" tabStyle="Account"> 
+<style>
+
+.displaynone
+{
+    display:none;
+}
+.th1
+{
+    background-color:#d9eaef;
+    border: 1px solid #d9eaef; 
+    -webkit-border-radius: 3px; 
+    -moz-border-radius: 3px; 
+     border-radius: 3px;
+}
+.divclass
+    {
+        display:block;
+    }
+    .bPageBlock
+    {
+    background-color: #f8f8f8;
+    border-top:3px solid #e39321;
+    border-bottom: 1px solid #eaeaea;
+    border-left: 1px solid #eaeaea;
+    border-right: 1px solid #eaeaea;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+        padding: 0;
+    margin-bottom: 10px;
+        clear: both;
+    }
+</style>
+<script type="text/javascript">
+function clearall()
+{
+ document.getElementById("resultant_table").className += " displaynone";
+    document.getElementById('accName').value='';
+        
+        document.getElementById('accPhone').value='';
+}
+function enablesave()
+{
+    if((document.getElementById('newaccount').checked))
+    {
+        
+        document.getElementById("savebtn").className =document.getElementById("savebtn").className.replace( /(?:^|\s)displaynone(?!\S)/g , '' );
+       document.getElementById("clearbtn").className =document.getElementById("clearbtn").className.replace( /(?:^|\s)displaynone(?!\S)/g , '' );
+    }
+    else
+    {
+        document.getElementById("savebtn").className = "displaynone";
+                document.getElementById("clearbtn").className = "displaynone";
+    }
+}
+
+function insertaccountJS()
+{
+    var accountNameJS= document.getElementById('accName').value;        
+        var accountPhoneJS = document.getElementById('accPhone').value;
+        if((accountNameJS!='')&&(accountPhoneJS !=''))
+        {
+         MBT_SFFB.dupechecker_Account.insertAccount(accountNameJS,accountPhoneJS ,
+         function(result, event)
+        {
+           if (event.status) 
+            {
+                if(result!='Exception')
+                {
+                 
+                window.location.href = "https://ap2.salesforce.com/"+result;
+                   
+                    // redirect to the inserted record.
+                }
+            }
+            
+        }, {escape:true});
+        }
+        else
+        {
+            clearall();
+            alert('Email Id and Name Field is Required !');
+        }
+}
+
+    function getaccountJS() 
+    {
+        //get the values of input text and place into the variable.
+        
+        var accountNameJS = document.getElementById('accName').value;       
+        var accountPhoneJS = document.getElementById('accPhone').value;
+        document.getElementById("savebtn").className = "displaynone";
+            document.getElementById("clearbtn").className = "displaynone";
+        if((accountNameJS =='')&&(accountPhoneJS==''))
+        {
+            
+            document.getElementById("resultant_table").innerHTML='';
+            document.getElementById("resultant_table").className += " displaynone";
+        }
+        else
+        {
+       //  enablesave();   
+                document.getElementById("resultant_table").className =document.getElementById("resultant_table").className.replace( /(?:^|\s)displaynone(?!\S)/g , '' );
+        MBT_SFFB.dupechecker_Account.getAccount(accountNameJS,accountPhoneJS,
+        function(result, event)
+        {         
+            var table='';    
+            if (event.status) 
+            {
+            table=table+'<thead><tr class="th1"><td colspan="2"><b>Potential Duplicate Accounts ['+result.length+']<b></td></tr></thead>';
+            table=table+'<thead><tr class="th1"><td><b>Name</b></td><td><b>Phone No</b></td></tr></thead><tbody>';
+                for(var i=0;i<result.length;i++)
+                    { 
+                        var acc = result[i];
+                        if(acc.Name==undefined)
+                        {
+                            table=table+'<tr><td></td>';
+                        }
+                        else
+                        {
+                            table=table+'<tr><td><input type="radio" name="account" id='+acc.Id+' value='+acc.Id+' onchange="enablesave()"></input><a href=https://ap2.salesforce.com/'+acc.Id+' target="_top">'+acc.Name+'</a> ( ';
+                            if(!(acc.BillingCity==undefined))
+                            {
+                                table=table+acc.BillingCity+' , ';
+                            }
+                            
+                            if(!(acc.BillingCountry==undefined))
+                            {
+                                table=table+acc.BillingCountry;
+                            }
+                            
+                            table=table+' )</td>';
+                        }
+                        if(acc.Phone==undefined)
+                        {
+                            table=table+'<td> </td>';
+                        }
+                        else
+                        {
+                            table=table+'<td>'+acc.Phone+'</td>';
+                        }
+                        
+                        table= table+'</tr>';
+                    }
+                    
+                    if(result.length!=0)
+                    {
+                        table=table+'<tr class="th1"><td colspan="2"><input type="radio" name="account" id="newaccount" onchange="enablesave()"><b>New Account</b></input></td></tr>';
+                        table= table+'</tbody>';
+                       document.getElementById("resultant_table").innerHTML=table; 
+                    }
+                    else
+                    {
+                     table='';
+                     table=table+'<tr class="th1"><td><b>Potential Duplicate New Accounts [0]<b></td></tr>';                      
+                     table=table+'<input type="radio" name="account" id="newaccount" onchange="enablesave()"><b>New Account</b></input>';
+                     document.getElementById("resultant_table").innerHTML=table;
+                    }
+                    
+            }
+            
+        }, {escape:true});
+           
+            
+        }
+        
+    }
+    </script>
+  <apex:form id="searchForm"> 
+     <apex:sectionheader title="Account" subtitle="{!if(AccountID==null,'New Account',AccountnewName)}"></apex:sectionheader>
+  <apex:pageblock mode="edit" id="accountPB" title="Account">
+     <apex:pagemessages ></apex:pagemessages>
+     <table width="100%">
+     <tr>
+     <td width="100px">
+     <table width="100%">
+    <tr>
+    <td><b>Account Name :</b></td>
+    <td><input id="accName" type="text" onkeyup="getaccountJS()" /></td>
+    </tr>
+    <tr>
+    <td><b>Account Phone No :</b></td>
+    <td><input id="accPhone" type="text" onkeyup="getaccountJS()" /></td>
+    </tr>    
+    <tr>
+    <td><button onclick="insertaccountJS()" class="displaynone" type="button" id="savebtn">Save</button></td>
+    <td><button onclick="clearall()" type="button" class="displaynone" id="clearbtn">Cancel</button></td>
+    </tr>    
+    </table>
+    </td>
+     <td width="350px">
+     <table width="100%" class="bPageBlock displaynone" id="resultant_table">     
+     </table>
+    </td>     
+     </tr>
+     </table>
+    </apex:pageblock>
+   </apex:form>
+</apex:page>

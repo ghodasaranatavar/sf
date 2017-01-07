@@ -1,0 +1,686 @@
+<apex:page id="socialsetup" controller="socialsetup" action="{!getprofile}">
+ <apex:stylesheet value="{!URLFOR($Resource.facebookresorce, 'resource/css/bootstrap.min.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.facebookresorce, 'resource/css/bootstrap-reset.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.facebookresorce, 'resource/assets/font-awesome/css/font-awesome.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.facebookresorce, 'resource/css/slidebars.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.facebookresorce, 'resource/css/style.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.facebookresorce, 'resource/css/style-responsive.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.facebookresorce, 'resource/css/custom.css')}" />
+<apex:stylesheet value="{!URLFOR($Resource.facebookresorce, 'resource/css/table-responsive.css')}" />
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/jquery.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/bootstrap.min.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/jquery-ui-1.9.2.custom.min.js')}"></script>
+<script type="text/javascript" class="include" src="{!URLFOR($Resource.facebookresorce, 'resource/js/jquery.dcjqaccordion.2.7.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/bootstrap-switch.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/jquery.tagsinput.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/jquery.scrollTo.min.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/jquery.nicescroll.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/jquery.sparkline.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/assets/jquery-easy-pie-chart/jquery.easy-pie-chart.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/jquery.customSelect.min.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/respond.min.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/slidebars.min.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/common-scripts.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/sparkline-chart.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/easy-pie-chart.js')}"></script>
+<script type="text/javascript" src="{!URLFOR($Resource.facebookresorce, 'resource/js/count.js')}"></script>  
+<script>
+$(document).ready(function() {
+
+
+});
+function checkurlparams()
+{
+    var url =window.location.href;
+    var arr = url.split('?');
+     if ((arr[1] != '')&&(arr[1] !=undefined)) 
+    {
+    }
+}
+ 
+</script>
+<style>#bodyCell{background-color:rgba(197, 204, 226, 0.64);}</style><!-- add by ankit #f1f2f7  finally applied  rgba(197, 204, 226, 0.64) -->
+<section id="container">
+    <section id="main-content">
+        <section class="wrapper">
+        <div class="row" id="navandtabsection">
+        <div class="col-md-12">
+            <div class="col-md-2 col-sm-3 col-xs-3" style="">            
+                <aside>
+                    <div class="nav-collapse" id="sidebar" style="background: #00a8b3;">                    
+                        <ul class="sidebar-menu" id="nav-accordion">
+                            <li>
+                                <a class="active" href="#" id="facebookhome">
+                                    <i class="fa fa-facebook-square"></i>
+                                    <span>Facebook</span>
+                                </a>
+                            </li>
+                            <li class="sub-menu">
+                                <a href="javascript:;">
+                                    <i class="fa fa-cogs"></i>
+                                        <span>Settings</span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a href="#" id="usersetting">User Settings</a></li>
+                                    <li><a href="#" id="pagesetting">Page Settings</a></li>                                    
+                                </ul>
+                            </li>
+                            <li class="sub-menu">
+                                <a href="javascript:;">
+                                    <i class="fa fa-file-text-o"></i>
+                                    <span>Logs</span>
+                                </a>
+                                <ul class="sub">
+                                    <li><a href="#" id="conversationlog">Conversation Logs</a></li>
+                                    <li><a href="#" id="applicationlog">Application Logs</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" id="helpdesk">
+                                    <i class="fa fa-comments-o"></i>
+                                    <span>Help Desk</span>
+                                </a>
+                            </li>                 
+                        </ul>
+                    
+                    </div>
+                </aside>
+                
+            </div>
+            <div class="col-md-10 col-sm-9 col-xs-9" style="">
+            
+                <div class="row">                
+                    <section class="panel" id="tab_facebookhome">
+                        <header class="panel-heading tab-bg-dark-navy-blue ln-manu">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#tab_facebookhome_1">
+                                        <i class="fa fa-user"></i>
+                                        Athenticate
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#tab_facebookhome_2">
+                                        <i class="fa fa-user"></i>
+                                        #tab_facebookhome_2
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#tab_facebookhome_3">
+                                        <i class="fa fa-envelope-o"></i>
+                                        #tab_facebookhome_3
+                                    </a>
+                                 </li>
+                              </ul>
+                        </header>
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_facebookhome_1">                                    
+                                    <div class="row" id="authenticateuser">
+                                        <div class="col-lg-12">
+                                            <div class="panel">
+                                                <div class="panel-heading">
+                                                 Please Authenticate with valid Facebook Username.                                                                                                            
+                                                </div>
+                                                <div class="panel-body">
+                                                <!--<apex:form id="frm_login">
+                                                <apex:commandButton id="btn_facebooklogin" styleClass="btn btn-primary" value="Login" action="{!getcode}"/>
+                                                </apex:form>-->
+                                                <a href="https://www.facebook.com/v2.8/dialog/oauth?client_id=847444638724852&redirect_uri=https://mbt-sffb.ap2.visual.force.com/apex/getandsettokenvf&scope=public_profile,publish_pages,manage_pages,user_friends,email,business_management" class="btn btn-primary">Login to Facebook</a>                                                
+                                                 <!-- <button type="button" id="btn_login" class="btn btn-success"><i class="fa fa-facebook-square"></i>Facebook Login</button>-->                                                           
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="row" id="authenticateduser">
+                                        <div class="col-lg-12">
+                                            <div class="panel">
+                                                <div class="panel-heading">
+                                                 Authenticated User : Chirag@innodel.com                                                                                                           
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="table-responsive" id="div_user">
+                                                        <table class="table table-hover table-bordered"><thead><tr><th>Page</th>
+                                                        <th>View In Salesforce</th>
+                                                        <th>View In Facebook</th>
+                                                        </tr></thead>
+                                                        <tbody>
+                                                        <apex:repeat id="pages" value="{!listfbpages}" var="page">
+                                                        <tr>
+                                                        <td>
+                                                        <img src="{!page.MBT_SFFB__Image__c}" />
+                                                        </td>
+                                                        <td>
+                                                            <a href="https://mbt-sffb.ap2.visual.force.com/apex/Facebook_Posting?page={!page.Facebook_Page_ID__c}">{!page.Facebook_Page_Name__c}</a>
+                                                            </td>
+                                                        
+                                                        <td>
+                                                            <a href="{!page.MBT_SFFB__Facebook_Page_Url__c}">View {!page.Facebook_Page_Name__c} in facebook</a>
+                                                            </td>
+                                                                                                                    
+                                                        </tr>
+                                                        </Apex:repeat>
+                                                        </tbody></table>
+                                                     </div>                                                      
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </div>
+                                <div class="tab-pane" id="tab_facebookhome_2">tab_facebookhome_2</div>
+                                <div class="tab-pane " id="tab_facebookhome_3">tab_facebookhome_3</div>
+                              </div>
+                          </div>
+                      </section>
+                      <section class="panel displaynone" id="tab_pagesetting">
+                        <header class="panel-heading tab-bg-dark-navy-blue ln-manu">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#tab_pagesetting_1">
+                                        <i class="fa fa-user"></i>
+                                        Page Settings
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#tab_pagesetting_2">
+                                        <i class="fa fa-user"></i>
+                                        #tab_pagesetting_2
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#tab_pagesetting_3">
+                                        <i class="fa fa-envelope-o"></i>
+                                        #tab_pagesetting_3
+                                    </a>
+                                 </li>
+                              </ul>
+                        </header>
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_pagesetting_1">
+                                  <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="panel">
+                                                <div class="panel-heading">
+                                                 Allow Users for pages                                                                                                           
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="table-responsive" id="div_pageuser">
+                                                    
+                                                    </div>                                                      
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>    
+                                </div>
+                                <div class="tab-pane" id="tab_pagesetting_2">tab_pagesetting_2</div>
+                                <div class="tab-pane " id="tab_pagesetting_3">tab_pagesetting_3</div>
+                              </div>
+                          </div>
+                      </section>
+                      <section class="panel displaynone" id="tab_usersetting">
+                        <header class="panel-heading tab-bg-dark-navy-blue ln-manu">
+                            <ul class="nav nav-tabs">
+                                <li class="active">
+                                    <a data-toggle="tab" href="#tab_usersetting_1">
+                                        <i class="fa fa-user"></i>
+                                        Application Users
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#tab_usersetting_2">
+                                        <i class="fa fa-user"></i>
+                                        #tab_usersetting_2
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#tab_usersetting_3">
+                                        <i class="fa fa-envelope-o"></i>
+                                        #tab_usersetting_3
+                                    </a>
+                                 </li>
+                              </ul>
+                        </header>
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_usersetting_1">                                    
+                                    <div class="row" id="authenticateduser">
+                                        <apex:form >
+                                            <apex:outputPanel rendered="true" id="outp_tables">
+                                                <apex:pageMessages ></apex:pageMessages>
+                                                  <div class="col-sm-12">
+                                                      <section class="panel">
+                                                      <header class="panel-heading">
+                                                      <div class="row">
+                                                      <div class="col-md-6">
+                                                      <h3>Available Users</h3>
+                                                      </div>
+                                                      <div class="col-md-6">
+                                                      <apex:commandButton action="{!getSelected}" reRender="outp_tables" styleClass=" pull-right btn btn-success" value="Allow User"/>
+                                                      </div>
+                                                      </div>
+                                                      </header>
+                                                         
+                                                           <table class="table table-striped table-advance table-hover">
+                                                                <tr>
+                                                                    <th>
+                                                                        Select
+                                                                    </th>
+                                                                    <th>
+                                                                        User Name
+                                                                    </th>
+                                                                     <th>
+                                                                        Config
+                                                                    </th> 
+                                                                  </tr>
+                                                                    <apex:repeat id="repeat_availableuser" value="{!otheruserlist}" var="a">
+                                                                    <tr>
+                                                                      <td>
+                                                                          <apex:inputCheckbox id="checkedone" value="{!a.validated}" />
+                                                                      </td>
+                                                                      <td>
+                                                                          {!a.u.Username}
+                                                                    </td>
+                                                                    <td>
+                                                                         <apex:selectList value="{!selectedconfigId}" size="1" multiselect="false"  >
+                                                                        <apex:selectOptions value="{!appuserlistmethod}" />
+                                                                        <!--<apex:actionSupport event="onchange" reRender="outp_tables" action="{!getListOfapplicationusers}"/> -->
+                                                                        </apex:selectList>
+                                                                      </td>
+                                                                  </tr>
+                                                            </apex:repeat>
+                                                         </table>
+                                                      </section>
+                                                  </div>
+                  
+                                            <div class="col-sm-12">
+                                              <section class="panel">
+                                                  <header class="panel-heading">
+                                                      <div class="row">
+                                                      <div class="col-md-6">
+                                                      <h3>Allowed Users</h3>
+                                                      </div>
+                                                      <div class="col-md-6">
+                                                      <apex:commandButton action="{!removeSelected}"  reRender="outp_tables" styleClass="pull-right btn btn-danger" value="Remove User"/>
+                                                      </div>
+                                                      </div>
+                                                      </header>
+                                                  <table class="table table-striped table-advance table-hover">
+                                                            <tr>
+                                                                <th>
+                                                                Select
+                                                                </th>
+                                                                <th>
+                                                                User Name
+                                                                </th>
+                                                                <th>
+                                                                Application Configuration 
+                                                                </th> 
+                                                              </tr>
+                                                            <apex:repeat id="repeat_alloweduser" value="{!appuserlist}" var="a">
+                                                            <tr>
+                                                                  <td>
+                                                                      <apex:inputCheckbox id="allowed" value="{!a.appuser.Validated__c}" />
+                                                                  </td>
+                                                                  <td>
+                                                                      {!a.appuser.MBT_SFFB__ApplicationUserName__r.Username}
+                                                                  </td>
+                                                                 <td>
+                                                                {!a.appuser.MBT_SFFB__Application_Config_For_User__r.Name}
+                                                                 
+                                                                  </td>
+                                                              </tr>
+                                                        </apex:repeat>
+                                                         </table>
+                                                  </section>
+                                          </div>
+                                        </apex:outputPanel>                                                                        
+                                    </apex:form>
+                                        </div>
+                                    
+                                </div>
+                                <div class="tab-pane" id="tab_usersetting_2">tab_usersetting_2</div>
+                                <div class="tab-pane " id="tab_usersetting_3">tab_usersetting_3</div>
+                              </div>
+                          </div>
+                      </section>
+                      <section class="panel displaynone" id="tab_conversationlog">
+                        <header class="panel-heading tab-bg-dark-navy-blue ln-manu">
+                            <ul class="nav nav-tabs">
+                                <li>
+                                    <a data-toggle="tab" href="#tab_conversationlog_1">
+                                        <i class="fa fa-home"></i>
+                                        #tab_conversationlog_1
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a data-toggle="tab" href="#tab_conversationlog_2">
+                                        <i class="fa fa-user"></i>
+                                        #tab_conversationlog_2
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#tab_conversationlog_3">
+                                        <i class="fa fa-envelope-o"></i>
+                                        #tab_conversationlog_3
+                                    </a>
+                                 </li>
+                              </ul>
+                        </header>
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <div class="tab-pane " id="tab_conversationlog_1">
+                                     <div class="row">
+                                        <header class="panel-heading">Contacts </header>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                        <!-- repeater start-->
+                                        <div class="col-md-4">
+                                            <section class="panel">                     
+                                                <div class="panel-body">
+                                                    <div class="best-seller">
+                                                        <article class="media media-bd">
+                                                            <a class="pull-left thumb p-thumb">
+                                                                <apex:image url="{!$Resource.cover}" height="20" width="20"/>
+                                                            </a>
+                                                            <div class="media-body">
+                                                                <a href="#" class=" p-head">Item One Tittle</a>
+                                                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                                            </div>
+                                                        </article>
+                                                    </div>
+                                                </div>
+                                            </section>
+                                        </div>
+                                        <!-- repeater end-->
+                                        </div>
+                                    </div> 
+                                
+                                </div>
+                                <div class="tab-pane active" id="tab_conversationlog_2">
+                                    <div class="chat-room">
+                                        <aside class="left-side">
+                                            <div class="user-head">
+                                                <i class="fa fa-comments-o"></i>
+                                                <h3>FlatChat</h3>
+                                            </div>
+                                            <ul class="chat-list">
+                                            <!--Repeater starts--> 
+                                                <li class="active ulli">
+                                                    <a class="lobby" href="">
+                                                        <h4>
+                                                            <i class="fa fa-list"></i>
+                                                            <span>November</span>
+                                                            <i class="fa fa-times pull-right"></i>
+                                                        </h4>
+                                                    </a>
+                                                </li>
+                                            <!--Repeater ends--> 
+                                            
+                      </ul>
+                   
+                  </aside>
+                  <aside class="mid-side">
+                      <div class="chat-room-head">
+                          <h3>Conversation history</h3>                        
+                      </div>
+                      <!--Repeater for page starts-->
+                      <div class="room-desk">
+                          <h4 class="pull-left">open room</h4>
+                            <!--Repeater for conversation starts-->
+                          <div class="room-box">
+                              <h5 class="text-primary"><a href="chat_room.html">Marketing</a></h5>
+                              
+                              <p><span class="text-muted">Admin :</span> Kally Brash | <span class="text-muted">Member :</span> 13 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
+                              <img src="http://www.mindshiftinteractive.com/wp-content/uploads/2016/10/test-big.png" style="height: 300px;width: 400px;" />
+                          </div>
+                          <!--Repeater for conversation ends-->
+                       </div>                      
+                       <!--Repeater for page ends-->
+                      <div class="room-desk">
+                          <h4 class="pull-left">private room</h4>
+                          <div class="room-box">
+                              <h5 class="text-primary"><a href="chat_room.html">Marketing</a></h5>
+                              <p>Welcome to our world of marketing. Lorem ipsum dolor sit amet</p>
+                              <p><span class="text-muted">Admin :</span> Kally Brash | <span class="text-muted">Member :</span> 13 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
+                          </div>
+                          <div class="room-box">
+                              <h5 class="text-primary"><a href="chat_room.html">Water Cooler</a></h5>
+                              <p>Welcome to our world of marketing. Lorem ipsum dolor sit amet</p>
+                              <p><span class="text-muted">Admin :</span> Kally Brash | <span class="text-muted">Member :</span> 13 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
+                          </div>
+                      </div>
+                  </aside>
+                  
+              </div>
+                                
+                                </div>
+                                <div class="tab-pane " id="tab_conversationlog_3">tab_conversationlog_3</div>
+                              </div>
+                          </div>
+                      </section>
+                      <section class="panel displaynone" id="tab_applicationlog">
+                        <header class="panel-heading tab-bg-dark-navy-blue ln-manu">
+                            <ul class="nav nav-tabs">
+                                <li>
+                                    <a data-toggle="tab" href="#tab_applicationlog_1">
+                                        <i class="fa fa-home"></i>
+                                        #tab_applicationlog_1
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a data-toggle="tab" href="#tab_applicationlog_2">
+                                        <i class="fa fa-user"></i>
+                                        #tab_applicationlog_2
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#tab_applicationlog_3">
+                                        <i class="fa fa-envelope-o"></i>
+                                        #tab_applicationlog_3
+                                    </a>
+                                 </li>
+                              </ul>
+                        </header>
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <div class="tab-pane " id="tab_applicationlog_1">
+                                      tab_applicationlog_1
+                                </div>
+                                <div class="tab-pane active" id="tab_applicationlog_2">
+                                <div class="chat-room">
+                                      <aside class="left-side">
+                                          <div class="user-head">
+                                              <i class="fa fa-comments-o"></i>
+                                              <h3>FlatChat</h3>
+                                          </div>
+                                          <ul class="chat-list">                                              
+                                              <li class="active ulli">
+                                                  <a  href="#second">
+                                                    <i class="fa fa-rocket"></i>
+                                                    <span>November</span>
+                                                    <i class="fa fa-times pull-right"></i>
+                                                  </a>
+                                              </li>
+                                              <li class="ulli">
+                                                  <a  href="#third">
+                                                      <i class="fa fa-rocket"></i>
+                                                      <span>October</span>
+                                                      <i class="fa fa-times pull-right"></i>
+                                                  </a>
+                                              </li>
+                                              <li class="ulli">
+                                                  <a href="">
+                                                      <i class="fa fa-rocket"></i>
+                                                      <span>Design Lounge</span>
+                                                      <i class="fa fa-times pull-right"></i>
+                                                  </a>
+                                              </li>
+                                              <li class="ulli">
+                                                  <a href="">
+                                                      <i class="fa fa-rocket"></i>
+                                                      <span>Development</span>
+                                                      <i class="fa fa-times pull-right"></i>
+                                                  </a>
+                                              </li>
+                                          </ul>
+                                      </aside>
+                                      <aside class="mid-side">
+                                          <div class="chat-room-head">
+                                              <h3>Lobby</h3>                        
+                                          </div>
+                                          <div class="room-desk" id="first">
+                                              <h4 class="pull-left">open room</h4>
+                                            
+                                              <div class="room-box">
+                                                  <h5 class="text-primary"><a href="chat_room.html">Marketing</a></h5>
+                                                  
+                                                  <p><span class="text-muted">Admin :</span> Kally Brash | <span class="text-muted">Member :</span> 13 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
+                                                  <img src="http://www.mindshiftinteractive.com/wp-content/uploads/2016/10/test-big.png" style="height: 300px;width: 400px;" />
+                                              </div>
+                                              <div class="room-box">
+                                                  <h5 class="text-primary"><a href="chat_room.html">Water Cooler</a></h5>
+                                                  <p>Welcome to our world of marketing. Lorem ipsum dolor sit amet</p>
+                                                  <p><span class="text-muted">Admin :</span> Kally Brash | <span class="text-muted">Member :</span> 13 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
+                                              </div>
+                                              <div class="room-box">
+                                                  <h5 class="text-primary"><a href="chat_room.html">FlatLab</a></h5>
+                                                  <p>Welcome to our world of marketing. Lorem ipsum dolor sit amet</p>
+                                                  <p><span class="text-muted">Admin :</span> Kally Brash | <span class="text-muted">Member :</span> 13 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
+                                              </div>
+                                          </div>
+                                          <div class="room-desk active" id="second">
+                                              <h4 class="pull-left">private room</h4>
+                                              <div class="room-box">
+                                                  <h5 class="text-primary"><a href="chat_room.html">Marketing</a></h5>
+                                                  <p>Welcome to our world of marketing. Lorem ipsum dolor sit amet</p>
+                                                  <p><span class="text-muted">Admin :</span> Kally Brash | <span class="text-muted">Member :</span> 13 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
+                                              </div>
+                                              <div class="room-box">
+                                                  <h5 class="text-primary"><a href="chat_room.html">Water Cooler</a></h5>
+                                                  <p>Welcome to our world of marketing. Lorem ipsum dolor sit amet</p>
+                                                  <p><span class="text-muted">Admin :</span> Kally Brash | <span class="text-muted">Member :</span> 13 | <span class="text-muted">Last Activity :</span> 15 min ago</p>
+                                              </div>
+                                          </div>
+                                      </aside>
+                                      
+                                    </div>
+                                </div>
+                                <div class="tab-pane " id="tab_applicationlog_3">tab_applicationlog_3</div>
+                              </div>
+                          </div>
+                      </section>
+                      <section class="panel displaynone" id="tab_helpdesk">
+                        <header class="panel-heading tab-bg-dark-navy-blue ln-manu">
+                            <ul class="nav nav-tabs">
+                                <li>
+                                    <a data-toggle="tab" href="#tab_helpdesk_1">
+                                        <i class="fa fa-home"></i>
+                                        #tab_helpdesk_1
+                                    </a>
+                                </li>
+                                <li class="active">
+                                    <a data-toggle="tab" href="#tab_helpdesk_2">
+                                        <i class="fa fa-user"></i>
+                                        #tab_helpdesk_2
+                                    </a>
+                                </li>
+                                <li>
+                                    <a data-toggle="tab" href="#tab_helpdesk_3">
+                                        <i class="fa fa-envelope-o"></i>
+                                        #tab_helpdesk_3
+                                    </a>
+                                 </li>
+                              </ul>
+                        </header>
+                        <div class="panel-body">
+                            <div class="tab-content">
+                                <div class="tab-pane " id="tab_helpdesk_1">
+                                      tab_helpdesk_1
+                                </div>
+                                <div class="tab-pane active" id="tab_helpdesk_2">tab_helpdesk_2</div>
+                                <div class="tab-pane " id="tab_helpdesk_3">tab_helpdesk_3</div>
+                              </div>
+                          </div>
+                      </section>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+         </section>
+    </section>
+</section>
+
+
+<script>
+$("#facebookhome").click(function() 
+{
+    if($("#tab_facebookhome").hasClass("displaynone"))
+    {
+       $("#tab_facebookhome").removeClass("displaynone");
+       $("#tab_pagesetting").addClass("displaynone");
+       $("#tab_usersetting").addClass("displaynone");
+       $("#tab_conversationlog").addClass("displaynone");
+       $("#tab_applicationlog").addClass("displaynone");
+       $("#tab_helpdesk").addClass("displaynone"); 
+    }
+  });
+  $("#pagesetting").click(function() {
+  if($("#tab_pagesetting").hasClass("displaynone"))
+    {
+       $("#tab_facebookhome").addClass("displaynone");
+       $("#tab_pagesetting").removeClass("displaynone");
+       $("#tab_usersetting").addClass("displaynone");
+       $("#tab_conversationlog").addClass("displaynone");
+       $("#tab_applicationlog").addClass("displaynone");
+       $("#tab_helpdesk").addClass("displaynone");
+    }
+  }); 
+  $("#usersetting").click(function() {
+  if($("#tab_usersetting").hasClass("displaynone"))
+    {
+       $("#tab_facebookhome").addClass("displaynone");
+       $("#tab_pagesetting").addClass("displaynone");
+       $("#tab_usersetting").removeClass("displaynone");
+       $("#tab_conversationlog").addClass("displaynone");
+       $("#tab_applicationlog").addClass("displaynone");
+       $("#tab_helpdesk").addClass("displaynone");
+    }
+  }); 
+  $("#conversationlog").click(function() {
+  if($("#tab_conversationlog").hasClass("displaynone"))
+    {
+       $("#tab_facebookhome").addClass("displaynone");
+       $("#tab_pagesetting").addClass("displaynone");
+       $("#tab_usersetting").addClass("displaynone");
+       $("#tab_conversationlog").removeClass("displaynone");
+       $("#tab_applicationlog").addClass("displaynone");
+       $("#tab_helpdesk").addClass("displaynone");
+    }
+  }); 
+  $("#applicationlog").click(function() {
+  if($("#tab_applicationlog").hasClass("displaynone"))
+    {
+       $("#tab_facebookhome").addClass("displaynone");
+       $("#tab_pagesetting").addClass("displaynone");
+       $("#tab_usersetting").addClass("displaynone");
+       $("#tab_conversationlog").addClass("displaynone");
+       $("#tab_applicationlog").removeClass("displaynone");
+       $("#tab_helpdesk").addClass("displaynone");
+    }
+  }); 
+  $("#helpdesk").click(function() {
+  if($("#tab_helpdesk").hasClass("displaynone"))
+    {
+       $("#tab_facebookhome").addClass("displaynone");
+       $("#tab_pagesetting").addClass("displaynone");
+       $("#tab_usersetting").addClass("displaynone");
+       $("#tab_conversationlog").addClass("displaynone");
+       $("#tab_applicationlog").addClass("displaynone");
+       $("#tab_helpdesk").removeClass("displaynone");
+    }
+  });
+</script>
+</apex:page>

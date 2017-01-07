@@ -1,0 +1,9 @@
+<apex:page controller="facebookerror">
+<apex:form id="frm">
+You had deauthorize the Application
+
+<apex:commandButton id="btn_facebookerror" value="Social Setup" action="{!setredirect}"/>
+
+</apex:form>
+  
+</apex:page>

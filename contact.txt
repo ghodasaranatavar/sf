@@ -1,0 +1,19 @@
+	
+Facebook Id
+MBT_SFFB__Facebook_Id__c	 	Text(255) (External ID)
+
+
+	
+Image
+MBT_SFFB__Image__c	 	URL(255)
+
+	
+Picture
+MBT_SFFB__Picture__c	 	Formula (Text)	 	 	Chirag Shah, 1/4/2017 3:58 AM
+Edit | Del	 	
+Profile Url
+MBT_SFFB__Profile_Url__c	 	URL(255)
+
+	 	
+Username
+MBT_SFFB__Username__c	 	Text(255)

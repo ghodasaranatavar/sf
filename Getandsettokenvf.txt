@@ -1,0 +1,5 @@
+<apex:page controller="getandsettoken" action="{!gettoken}">
+Please Wait You will be redirected to Setup page. 
+  
+</apex:page>
+               
